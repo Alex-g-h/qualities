@@ -1,25 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import QualitiesTable from "../components/ui/qualitiesTable";
-import httpService from "../services/http.service";
+import qualityService from "../services/quality.service";
 
 const QualitiesListPage = () => {
   const [qualities, setQualities] = useState([]);
   const history = useHistory();
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const { data } = await httpService.get(
-          "http://localhost:4000/api/v1/quality"
-        );
-        setQualities(data.content);
-      } catch (error) {
-        console.error(error);
-      }
+    try {
+      qualityService.fetchAll().then((data) => setQualities(data.content));
+    } catch (error) {
+      console.error(error);
     }
-
-    fetchData();
   }, []);
 
   const handleEdit = (param) => {
