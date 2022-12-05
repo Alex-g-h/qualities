@@ -5,7 +5,7 @@ import NavBar from "./components/ui/NavBar";
 import routes from "./routes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { QualitiesProvider } from "./hooks/useQualities";
+import { QualitiesProvider, useQualities } from "./hooks/useQualities";
 
 const getRoutes = (routes) => {
   return routes.map((prop, key) => {
